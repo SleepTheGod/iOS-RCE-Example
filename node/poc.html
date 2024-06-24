@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Install Example App</title>
+    <script>
+        function getDeviceInfo() {
+            var deviceInfo = {
+                userAgent: navigator.userAgent,
+                platform: navigator.platform,
+                language: navigator.language,
+                screenResolution: window.screen.width + 'x' + window.screen.height
+            };
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/log_device_info", true);
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.send(JSON.stringify(deviceInfo));
+
+            // Redirect to the app installation URL
+            window.location.href = "itms-services://?action=download-manifest&url=https://example.com/manifest.plist";
+        }
+    </script>
+</head>
+<body onload="getDeviceInfo()">
+    <p>Loading...</p>
+</body>
+</html>
